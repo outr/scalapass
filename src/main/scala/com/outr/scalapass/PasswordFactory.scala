@@ -9,6 +9,9 @@ import profig.Profig
 
 /**
   * PasswordFactory provides functionality for creating and verifying passwords using Argon2id algorithm
+  *
+  * Mostly follows best practices here: https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet
+  * Utilizes the Argon2 binding for the JVM here: https://github.com/phxql/argon2-jvm
   */
 object PasswordFactory {
   private lazy val argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id)
