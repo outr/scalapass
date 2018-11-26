@@ -110,7 +110,7 @@ object PasswordFactory {
     val salt = new Array[Byte](bytes)
     secureRandom.nextBytes(salt)
     val base64 = Base64.getEncoder.encodeToString(salt)
-    Salt(salt, base64)
+    new Salt(base64)
   }
 
   /**
