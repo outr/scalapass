@@ -114,10 +114,11 @@ object PasswordFactory {
   }
 
   /**
-    * Hashes the password with an optionally supplied salt
+    * Hashes the password with an optionally supplied salt. Argon2 automatically generates an internal salt, so
+    * providing an additional salt isn't strictly necessary.
     *
     * @param password the password to generate a hash for
-    * @param salt the salt to use to increase the complexity of the hash
+    * @param salt the salt to use to increase the complexity of the hash (defaults to None)
     * @param charset the charset to use when generating the hash (defaults to charset)
     * @param iterations the number of iterations to apply to the algorithm (defaults to iterations)
     * @param memory the amount of memory to utilize in the algorithm (defaults to memory)
@@ -125,7 +126,7 @@ object PasswordFactory {
     * @return hashed password
     */
   def hash(password: String,
-           salt: Option[Salt],
+           salt: Option[Salt] = None,
            charset: Charset = this.charset,
            iterations: Int = this.iterations,
            memory: Int = this.memory,
@@ -137,14 +138,14 @@ object PasswordFactory {
     * Verifies an attempted password against a hashed password
     *
     * @param attemptedPassword the password to attempt
-    * @param salt the salt that was used to generate the hash
     * @param hash the generated hash to check the password against
+    * @param salt the salt that was used to generate the hash (defaults to None)
     * @param charset the charset that was used when creating the hash (defaults to charset)
     * @return true if the attempted password matches the hash and salt
     */
   def verify(attemptedPassword: String,
-             salt: Option[Salt],
              hash: String,
+             salt: Option[Salt] = None,
              charset: Charset = this.charset): Boolean = {
     argon2.verify(hash, salted(attemptedPassword, salt))
   }
