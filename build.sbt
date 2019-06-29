@@ -1,9 +1,9 @@
 name := "scalapass"
 organization := "com.outr"
-version := "1.0.2"
+version := "1.0.3-SNAPSHOT"
 
-scalaVersion := "2.12.7"
-crossScalaVersions in ThisBuild := List("2.12.7", "2.11.12")
+scalaVersion := "2.13.0"
+crossScalaVersions in ThisBuild := List("2.13.0", "2.12.8", "2.11.12")
 scalacOptions in ThisBuild ++= Seq("-unchecked", "-deprecation")
 
 publishTo := sonatypePublishTo.value
@@ -26,6 +26,6 @@ developers in ThisBuild := List(
 fork := true
 
 libraryDependencies ++= Seq(
-  "com.outr" %% "profig" % "2.3.2",
+  "com.outr" %% "profig" % "2.3.6",
   "de.mkammerer" % "argon2-jvm" % "2.5"
 )
