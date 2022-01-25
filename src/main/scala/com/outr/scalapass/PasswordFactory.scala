@@ -150,7 +150,7 @@ object PasswordFactory {
     argon2.verify(hash, salted(attemptedPassword, salt))
   }
 
-  private def salted(password: String, salt: Option[Salt]): String = {
-    salt.map(s => s"${s.base64}$password").getOrElse(password)
+  private def salted(password: String, salt: Option[Salt]): Array[Byte] = {
+    salt.map(s => s"${s.base64}$password").getOrElse(password).getBytes("UTF-8")
   }
 }

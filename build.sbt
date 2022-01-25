@@ -1,11 +1,13 @@
 name := "scalapass"
 organization := "com.outr"
-version := "1.0.4"
+version := "1.0.5-SNAPSHOT"
 
-scalaVersion := "2.13.0"
-crossScalaVersions := List("2.13.0", "2.12.8", "2.11.12")
+scalaVersion := "2.13.8"
+crossScalaVersions := List("2.13.8", "2.12.15", "2.11.12", "3.1.0")
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
+ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
+ThisBuild / sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
 publishTo := sonatypePublishTo.value
 sonatypeProfileName := "com.outr"
 publishMavenStyle := true
@@ -26,6 +28,6 @@ developers := List(
 fork := true
 
 libraryDependencies ++= Seq(
-  "com.outr" %% "profig" % "2.3.6",
-  "de.mkammerer" % "argon2-jvm" % "2.5"
+  "com.outr" %% "profig" % "3.2.8",
+  "de.mkammerer" % "argon2-jvm" % "2.11"
 )
