@@ -3,7 +3,7 @@ organization := "com.outr"
 version := "1.0.5"
 
 scalaVersion := "2.13.8"
-crossScalaVersions := List("2.13.8", "2.12.15", "3.1.0")
+crossScalaVersions := List("2.13.8", "2.12.15", "3.1.1")
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
