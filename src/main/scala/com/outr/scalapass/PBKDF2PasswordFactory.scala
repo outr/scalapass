@@ -62,7 +62,7 @@ object PBKDF2PasswordFactory {
     *
     * Configuration property: `scalapass.pbkdf2.iterations`
     */
-  lazy val iterations: Int = Profig("scalapass.pbkdf2.iterations").asOr[Int](10_000)
+  lazy val iterations: Int = Profig("scalapass.pbkdf2.iterations").asOr[Int](10000)
 
   /**
     * The default key length to use (Defaults to 512)
