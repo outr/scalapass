@@ -28,6 +28,6 @@ developers := List(
 fork := true
 
 libraryDependencies ++= Seq(
-  "com.outr" %% "profig" % "3.2.8",
+  "com.outr" %% "profig" % "3.2.9",
   "de.mkammerer" % "argon2-jvm" % "2.11"
 )
