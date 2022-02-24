@@ -17,18 +17,18 @@ case class PBKDF2PasswordFactory(saltBytes: Int = PBKDF2PasswordFactory.saltByte
                                  iterationCount: Int = PBKDF2PasswordFactory.iterations,
                                  keyLength: Int = PBKDF2PasswordFactory.keyLength) extends PasswordFactory {
   override def hash(password: String): String = {
-    val salt = PasswordFactory.generateSalt(saltBytes, saltStrong)
+    val salt = Bytes.generate(saltBytes, if (saltStrong) Bytes.Algorithm.Strong else Bytes.Algorithm.Weak())
     hash(password, salt)
   }
 
-  private def hash(password: String, salt: Salt): String = {
+  private def hash(password: String, salt: Bytes): String = {
     val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512")
-    val spec = new PBEKeySpec(password.toCharArray, salt.salt.toArray, iterationCount, keyLength)
+    val spec = new PBEKeySpec(password.toCharArray, salt.array, iterationCount, keyLength)
     val key = factory.generateSecret(spec)
     val bytes = key.getEncoded
     val hashAndSalt = HashAndSalt(
       hash = PasswordFactory.base64(bytes),
-      salt = PasswordFactory.base64(salt.salt)
+      salt = salt
     )
     val json = Json.format(hashAndSalt.toValue, JsonWriter.Compact)
     json
@@ -36,7 +36,7 @@ case class PBKDF2PasswordFactory(saltBytes: Int = PBKDF2PasswordFactory.saltByte
 
   override def verify(attemptedPassword: String, hash: String): Boolean = {
     val hashAndSalt = Json.parse(hash).as[HashAndSalt]
-    val salt = Salt(PasswordFactory.base64(hashAndSalt.salt))
+    val salt = hashAndSalt.salt
     val attempted = this.hash(attemptedPassword, salt)
     attempted == hash
   }

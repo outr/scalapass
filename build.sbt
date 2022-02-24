@@ -1,6 +1,6 @@
 name := "scalapass"
 organization := "com.outr"
-version := "1.1.0"
+version := "1.2.0-SNAPSHOT"
 
 scalaVersion := "2.13.8"
 crossScalaVersions := List("2.13.8", "2.12.15", "3.1.1")
