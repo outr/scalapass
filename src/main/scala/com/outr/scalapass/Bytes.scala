@@ -7,7 +7,9 @@ import profig.Profig
 
 import java.security.SecureRandom
 
-class Bytes(private[scalapass] val array: Array[Byte]) extends AnyVal
+class Bytes(private[scalapass] val array: Array[Byte]) extends AnyVal {
+  def length: Int = array.length
+}
 
 object Bytes {
   /**
@@ -29,6 +31,8 @@ object Bytes {
 
     case class Weak(algorithm: String = DefaultWeakAlgorithm) extends Algorithm
   }
+
+  def apply(array: Array[Byte]): Bytes = new Bytes(array)
 
   def generate(bytes: Int, algorithm: Algorithm): Bytes = {
     val random = algorithm match {
