@@ -2,8 +2,8 @@ name := "scalapass"
 organization := "com.outr"
 version := "1.2.1"
 
-scalaVersion := "2.13.8"
-crossScalaVersions := List("2.13.8", "2.12.17", "3.1.3")
+scalaVersion := "2.13.9"
+crossScalaVersions := List("2.13.9", "2.12.17", "3.1.3")
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
