@@ -1,10 +1,9 @@
-name := "scalapass"
-organization := "com.outr"
-version := "1.2.1"
+ThisBuild / organization := "com.outr"
+ThisBuild / version := "1.2.2-SNAPSHOT"
 
-scalaVersion := "2.13.9"
-crossScalaVersions := List("2.13.9", "2.12.17", "3.2.0")
-scalacOptions ++= Seq("-unchecked", "-deprecation")
+ThisBuild / scalaVersion := "2.13.9"
+ThisBuild / crossScalaVersions := List("2.13.9", "2.12.17", "3.2.0")
+ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 ThisBuild / sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
@@ -24,12 +23,28 @@ developers := List(
   Developer(id="darkfrog", name="Matt Hicks", email="matt@matthicks.com", url=url("http://matthicks.com"))
 )
 
-fork := true
-Test / testOptions += Tests.Argument("-oD")
+ThisBuild / Test / fork := true
+ThisBuild / Test / testOptions += Tests.Argument("-oD")
 
-libraryDependencies ++= Seq(
-  "com.outr" %% "profig" % "3.3.3",
-  "de.mkammerer" % "argon2-jvm" % "2.11",
-  "commons-codec" % "commons-codec" % "1.15",
-  "org.scalatest" %% "scalatest" % "3.2.13" % "test"
-)
+lazy val root = project
+  .in(file("."))
+  .settings(
+    name := "scalapass",
+    libraryDependencies ++= Seq(
+      "com.outr" %% "profig" % "3.4.3",
+      "de.mkammerer" % "argon2-jvm" % "2.11",
+      "commons-codec" % "commons-codec" % "1.15",
+      "org.scalatest" %% "scalatest" % "3.2.13" % "test"
+    )
+  )
+
+lazy val docs = project
+  .in(file("documentation"))
+  .dependsOn(root)
+  .enablePlugins(MdocPlugin)
+  .settings(
+    mdocVariables := Map(
+      "VERSION" -> version.value
+    ),
+    mdocOut := file(".")
+  )

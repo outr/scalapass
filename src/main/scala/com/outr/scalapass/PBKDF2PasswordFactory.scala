@@ -1,6 +1,6 @@
 package com.outr.scalapass
 
-import fabric.parse.{Json, JsonWriter}
+import fabric.io._
 import fabric.rw._
 import profig.Profig
 
@@ -30,12 +30,12 @@ case class PBKDF2PasswordFactory(saltBytes: Int = PBKDF2PasswordFactory.saltByte
       hash = PasswordFactory.base64(bytes),
       salt = salt
     )
-    val json = Json.format(hashAndSalt.toValue, JsonWriter.Compact)
+    val json = JsonFormatter.Compact(hashAndSalt.json)
     json
   }
 
   override def verify(attemptedPassword: String, hash: String): Boolean = {
-    val hashAndSalt = Json.parse(hash).as[HashAndSalt]
+    val hashAndSalt = JsonParser(hash, Format.Json).as[HashAndSalt]
     val salt = hashAndSalt.salt
     val attempted = this.hash(attemptedPassword, salt)
     attempted == hash
