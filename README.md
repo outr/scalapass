@@ -7,7 +7,7 @@ Straight-forward password hashing and verification using the latest algorithms. 
 
 ## SBT
 ```sbt
-libraryDependencies += "com.outr" %% "scalapass" % "1.2.1"
+libraryDependencies += "com.outr" %% "scalapass" % "1.2.2"
 ```
 
 ## Creating a hash
@@ -26,7 +26,7 @@ val factory = Argon2PasswordFactory()
 val password: String = "your-password-in-clear-text"
 // password: String = "your-password-in-clear-text"
 val hashed: String = factory.hash(password)
-// hashed: String = "$argon2id$v=19$m=65536,t=50,p=8$LIHgM0e/NXUKHlgnyeNQkw$GguwMQJm5qv7orJemO1LKuFo9IbPtoQotOPHQTXxNJ4"
+// hashed: String = "$argon2id$v=19$m=65536,t=50,p=8$NWjFl/DFATe5BRn5v+EwTw$EhJwlqIYEWDuoZJ7G9dpx80puP/49TG7SJSiMoy+YDc"
 ```
 
 Now store the one-way hashed password safely in your database.
@@ -36,7 +36,7 @@ Now store the one-way hashed password safely in your database.
 val attemptedPassword: String = "your-password-in-clear-text"
 // attemptedPassword: String = "your-password-in-clear-text"
 val hashedPassword: String = hashed  // From the database
-// hashedPassword: String = "$argon2id$v=19$m=65536,t=50,p=8$LIHgM0e/NXUKHlgnyeNQkw$GguwMQJm5qv7orJemO1LKuFo9IbPtoQotOPHQTXxNJ4"  // From the database
+// hashedPassword: String = "$argon2id$v=19$m=65536,t=50,p=8$NWjFl/DFATe5BRn5v+EwTw$EhJwlqIYEWDuoZJ7G9dpx80puP/49TG7SJSiMoy+YDc"  // From the database
 val valid: Boolean = factory.verify(attemptedPassword, hashedPassword)
 // valid: Boolean = true
 ```
