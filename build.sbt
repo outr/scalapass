@@ -3,7 +3,7 @@ organization := "com.outr"
 version := "1.2.1"
 
 scalaVersion := "2.13.8"
-crossScalaVersions := List("2.13.8", "2.12.15", "3.1.3")
+crossScalaVersions := List("2.13.8", "2.12.17", "3.1.3")
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
@@ -31,5 +31,5 @@ libraryDependencies ++= Seq(
   "com.outr" %% "profig" % "3.3.0",
   "de.mkammerer" % "argon2-jvm" % "2.11",
   "commons-codec" % "commons-codec" % "1.15",
-  "org.scalatest" %% "scalatest" % "3.2.11" % "test"
+  "org.scalatest" %% "scalatest" % "3.2.13" % "test"
 )
