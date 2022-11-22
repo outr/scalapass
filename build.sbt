@@ -1,5 +1,5 @@
 ThisBuild / organization := "com.outr"
-ThisBuild / version := "1.2.3"
+ThisBuild / version := "1.2.4"
 
 ThisBuild / scalaVersion := "2.13.10"
 ThisBuild / crossScalaVersions := List("2.13.10", "3.2.1")
@@ -32,7 +32,7 @@ lazy val root = project
   .settings(
     name := "scalapass",
     libraryDependencies ++= Seq(
-      "com.outr" %% "profig" % "3.4.4",
+      "com.outr" %% "profig" % "3.4.5",
       "de.mkammerer" % "argon2-jvm" % "2.11",
       "commons-codec" % "commons-codec" % "1.15",
       "org.scalatest" %% "scalatest" % "3.2.14" % "test"
