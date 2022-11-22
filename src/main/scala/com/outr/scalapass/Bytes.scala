@@ -19,7 +19,7 @@ object Bytes {
     */
   lazy val DefaultWeakAlgorithm: String = Profig("scalapass.weakAlgorithm").asOr[String]("SHA1PRNG")
 
-  implicit val rw: RW[Bytes] = RW(
+  implicit val rw: RW[Bytes] = RW.from(
     b => Arr(b.array.toVector.map(b => num(b.toLong))),
     v => new Bytes(v.asVector.map(_.asByte).toArray)
   )

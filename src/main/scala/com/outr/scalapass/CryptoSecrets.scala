@@ -9,7 +9,7 @@ case class CryptoSecrets(password: String, initializationVector: Bytes) {
 }
 
 object CryptoSecrets {
-  implicit val rw: RW[CryptoSecrets] = ccRW
+  implicit val rw: RW[CryptoSecrets] = RW.gen
 
   def generate(password: String): CryptoSecrets = {
     val iv = Bytes.generate(16, Bytes.Algorithm.Strong)
