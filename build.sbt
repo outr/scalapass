@@ -1,8 +1,9 @@
 ThisBuild / organization := "com.outr"
 ThisBuild / version := "1.2.2"
 
-ThisBuild / scalaVersion := "2.13.9"
-ThisBuild / crossScalaVersions := List("2.13.9", "3.2.1")
+ThisBuild / scalaVersion := "2.13.10"
+ThisBuild / crossScalaVersions := List("2.13.10", "3.2.1")
+
 ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
@@ -31,10 +32,10 @@ lazy val root = project
   .settings(
     name := "scalapass",
     libraryDependencies ++= Seq(
-      "com.outr" %% "profig" % "3.4.3",
+      "com.outr" %% "profig" % "3.4.4",
       "de.mkammerer" % "argon2-jvm" % "2.11",
       "commons-codec" % "commons-codec" % "1.15",
-      "org.scalatest" %% "scalatest" % "3.2.13" % "test"
+      "org.scalatest" %% "scalatest" % "3.2.14" % "test"
     )
   )
 
