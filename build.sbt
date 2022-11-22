@@ -2,7 +2,8 @@ ThisBuild / organization := "com.outr"
 ThisBuild / version := "1.2.2"
 
 ThisBuild / scalaVersion := "2.13.10"
-ThisBuild / crossScalaVersions := List("2.13.10", "3.2.0")
+ThisBuild / crossScalaVersions := List("2.13.10", "3.2.1")
+
 ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
