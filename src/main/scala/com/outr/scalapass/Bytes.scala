@@ -2,6 +2,7 @@ package com.outr.scalapass
 
 import fabric.Arr
 import fabric._
+import fabric.define.DefType
 import fabric.rw._
 import profig.Profig
 
@@ -21,7 +22,8 @@ object Bytes {
 
   implicit val rw: RW[Bytes] = RW.from(
     b => Arr(b.array.toVector.map(b => num(b.toLong))),
-    v => new Bytes(v.asVector.map(_.asByte).toArray)
+    v => new Bytes(v.asVector.map(_.asByte).toArray),
+    d = DefType.Arr(DefType.Int)
   )
 
   sealed trait Algorithm
