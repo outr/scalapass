@@ -2,7 +2,7 @@ ThisBuild / organization := "com.outr"
 ThisBuild / version := "1.2.5"
 
 ThisBuild / scalaVersion := "2.13.10"
-ThisBuild / crossScalaVersions := List("2.13.10", "3.2.2")
+ThisBuild / crossScalaVersions := List("2.13.10", "3.3.0")
 
 ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation")
 
