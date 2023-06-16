@@ -2,6 +2,7 @@ package com.outr.scalapass
 
 import de.mkammerer.argon2.Argon2Helper
 import profig.Profig
+import fabric.rw._
 
 /**
   * Uses Argon2 for password hashing
