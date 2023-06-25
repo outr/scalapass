@@ -34,7 +34,7 @@ lazy val root = project
     libraryDependencies ++= Seq(
       "com.outr" %% "profig" % "3.4.11",
       "de.mkammerer" % "argon2-jvm" % "2.11",
-      "commons-codec" % "commons-codec" % "1.15",
+      "commons-codec" % "commons-codec" % "1.16.0",
       "org.scalatest" %% "scalatest" % "3.2.16" % "test"
     )
   )
