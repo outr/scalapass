@@ -1,5 +1,5 @@
 ThisBuild / organization := "com.outr"
-ThisBuild / version := "1.2.6"
+ThisBuild / version := "1.2.8"
 
 ThisBuild / scalaVersion := "2.13.12"
 ThisBuild / crossScalaVersions := List("2.13.12", "3.3.1")
@@ -8,7 +8,7 @@ ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 ThisBuild / sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
-publishTo := sonatypePublishTo.value
+publishTo := sonatypePublishToBundle.value
 sonatypeProfileName := "com.outr"
 publishMavenStyle := true
 licenses := Seq("MIT" -> url("https://github.com/outr/scalapass/blob/master/LICENSE"))
@@ -32,12 +32,12 @@ lazy val root = project
   .settings(
     name := "scalapass",
     libraryDependencies ++= Seq(
-      "com.outr" %% "profig" % "3.4.11",
-      
+      "com.outr" %% "profig" % "3.4.12",
+
       "de.mkammerer" % "argon2-jvm" % "2.11",
-      
+
       "commons-codec" % "commons-codec" % "1.16.0",
-      
+
       "org.scalatest" %% "scalatest" % "3.2.17" % "test"
     )
   )

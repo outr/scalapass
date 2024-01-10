@@ -1,1 +1,1 @@
-sbt +clean +test docs/mdoc +publishSigned sonatypeRelease
+sbt +clean +test docs/mdoc +publishSigned sonatypeBundleRelease
