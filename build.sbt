@@ -38,7 +38,7 @@ lazy val root = project
 
       "commons-codec" % "commons-codec" % "1.16.0",
 
-      "org.scalatest" %% "scalatest" % "3.2.17" % "test"
+      "org.scalatest" %% "scalatest" % "3.2.18" % "test"
     )
   )
 
