@@ -1,13 +1,13 @@
 ThisBuild / organization := "com.outr"
-ThisBuild / version := "1.2.8"
+ThisBuild / version := "1.3.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "2.13.12"
-ThisBuild / crossScalaVersions := List("2.13.12", "3.3.7")
+ThisBuild / scalaVersion := "2.13.18"
+
+ThisBuild / crossScalaVersions := List("2.13.18", "3.3.7")
 
 ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation")
 
-ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
-ThisBuild / sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
+ThisBuild / sonatypeCredentialHost := xerial.sbt.Sonatype.sonatypeCentralHost
 publishTo := sonatypePublishToBundle.value
 sonatypeProfileName := "com.outr"
 publishMavenStyle := true
@@ -32,7 +32,7 @@ lazy val root = project
   .settings(
     name := "scalapass",
     libraryDependencies ++= Seq(
-      "com.outr" %% "profig" % "3.4.12",
+      "com.outr" %% "profig" % "3.5.0",
 
       "de.mkammerer" % "argon2-jvm" % "2.12",
 

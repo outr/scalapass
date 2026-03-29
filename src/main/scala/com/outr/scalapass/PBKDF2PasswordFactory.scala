@@ -4,6 +4,8 @@ import fabric.io._
 import fabric.rw._
 import profig.Profig
 
+import java.security.MessageDigest
+import java.util.Base64
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 
@@ -35,10 +37,13 @@ case class PBKDF2PasswordFactory(saltBytes: Int = PBKDF2PasswordFactory.saltByte
   }
 
   override def verify(attemptedPassword: String, hash: String): Boolean = {
-    val hashAndSalt = JsonParser(hash, Format.Json).as[HashAndSalt]
-    val salt = hashAndSalt.salt
-    val attempted = this.hash(attemptedPassword, salt)
-    attempted == hash
+    val storedHashAndSalt = JsonParser(hash, Format.Json).as[HashAndSalt]
+    val salt = storedHashAndSalt.salt
+    val attemptedJson = this.hash(attemptedPassword, salt)
+    val attemptedHashAndSalt = JsonParser(attemptedJson, Format.Json).as[HashAndSalt]
+    val storedBytes = Base64.getDecoder.decode(storedHashAndSalt.hash)
+    val attemptedBytes = Base64.getDecoder.decode(attemptedHashAndSalt.hash)
+    MessageDigest.isEqual(storedBytes, attemptedBytes)
   }
 }
 
@@ -58,11 +63,11 @@ object PBKDF2PasswordFactory {
   lazy val saltStrong: Boolean = Profig("scalapass.pbkdf2.saltStrong").asOr[Boolean](true)
 
   /**
-    * The default number of iterations to use (Defaults to 10,000)
+    * The default number of iterations to use (Defaults to 600,000)
     *
     * Configuration property: `scalapass.pbkdf2.iterations`
     */
-  lazy val iterations: Int = Profig("scalapass.pbkdf2.iterations").asOr[Int](10000)
+  lazy val iterations: Int = Profig("scalapass.pbkdf2.iterations").asOr[Int](600000)
 
   /**
     * The default key length to use (Defaults to 512)

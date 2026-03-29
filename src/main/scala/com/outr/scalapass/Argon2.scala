@@ -3,8 +3,8 @@ package com.outr.scalapass
 import de.mkammerer.argon2
 import de.mkammerer.argon2.Argon2Factory
 import de.mkammerer.argon2.Argon2Factory.Argon2Types
-import profig.Profig
 import fabric.rw._
+import profig.Profig
 
 sealed trait Argon2 {
   protected def `type`: Argon2Types

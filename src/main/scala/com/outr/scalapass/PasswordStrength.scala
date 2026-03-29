@@ -7,8 +7,7 @@ case class PasswordStrength(testers: List[PasswordTester] = List(
   PasswordTester.PerWord(),
   PasswordTester.PerUppercase(),
   PasswordTester.PerDigit(),
-  PasswordTester.PerSymbol(),
-//  PasswordTester.EnglishWordMatch()
+  PasswordTester.PerSymbol()
 )) {
   def apply(password: String): Double = testers.map(_.valueFor(password)).sum
 }
@@ -23,7 +22,7 @@ object PasswordTester {
   }
 
   case class PerWord(weight: Double = 2.0) extends PasswordTester {
-    override def valueFor(password: String): Double = password.split(' ').length * weight
+    override def valueFor(password: String): Double = password.split("[^a-zA-Z0-9]+").count(_.nonEmpty) * weight
   }
 
   case class PerUppercase(weight: Double = 1.5) extends PasswordTester {
@@ -42,12 +41,11 @@ object PasswordTester {
     override def valueFor(password: String): Double = {
       val b = new StringBuilder
       var wordMatches = 0
-      (0 until password.length - 1).foreach { start =>
+      (0 until password.length).foreach { start =>
         b.clear()
         password.substring(start).foreach { char =>
           b.append(char)
           if (b.length >= minimumLength && EnglishWords.contains(b.toString())) {
-            println(s"Found word match: ${b.toString()}")
             wordMatches += 1
           }
         }

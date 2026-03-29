@@ -7,7 +7,7 @@ import org.scalatest.wordspec.AnyWordSpec
 class PasswordFactorySpec extends AnyWordSpec with Matchers {
   "PasswordFactory" when {
     "using PBKDF2" should {
-      lazy val factory = PBKDF2PasswordFactory()
+      lazy val factory = PBKDF2PasswordFactory(iterationCount = 10000)
       var testing123Hash: String = ""
       "create a password without a salt specified" in {
         val hash = factory.hash("testing123")

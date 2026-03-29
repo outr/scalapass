@@ -19,7 +19,7 @@ case class Argon2PasswordFactory(iterations: Int = Argon2PasswordFactory.iterati
   private lazy val instance = argon2.create(saltLength, hashLength)
 
   override def hash(password: String): String =
-    instance.hash(iterations, memory, parallelism, password.getBytes("UTF-8"))
+    instance.hash(iterations, memory, parallelism, password.toCharArray)
 
   override def verify(attemptedPassword: String, hash: String): Boolean =
     instance.verify(hash, attemptedPassword.toCharArray)
