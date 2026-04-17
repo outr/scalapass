@@ -9,7 +9,7 @@ import profig.Profig
 import java.security.SecureRandom
 import scala.reflect.ClassTag
 
-class Bytes(private[scalapass] val array: Array[Byte]) extends AnyVal {
+case class Bytes private(private[scalapass] val array: Array[Byte]) extends AnyVal {
   def length: Int = array.length
 }
 
