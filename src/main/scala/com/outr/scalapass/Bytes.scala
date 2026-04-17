@@ -1,12 +1,13 @@
 package com.outr.scalapass
 
 import fabric.Arr
-import fabric._
-import fabric.define.DefType
+import fabric.define.{DefType, Definition}
+import fabric.rw.RW.from
 import fabric.rw._
 import profig.Profig
 
 import java.security.SecureRandom
+import scala.reflect.ClassTag
 
 class Bytes(private[scalapass] val array: Array[Byte]) extends AnyVal {
   def length: Int = array.length
@@ -20,11 +21,13 @@ object Bytes {
     */
   lazy val DefaultWeakAlgorithm: String = Profig("scalapass.weakAlgorithm").asOr[String]("SHA1PRNG")
 
-  implicit val rw: RW[Bytes] = RW.from(
-    b => Arr(b.array.toVector.map(b => num(b.toLong))),
-    v => new Bytes(v.asVector.map(_.asByte).toArray),
-    d = DefType.Arr(DefType.Int)
+  // TODO: Remove after the next release of Fabric - this is built-in
+  private implicit def arrayRW[V: RW: ClassTag]: RW[Array[V]] = from[Array[V]](
+    v => Arr(v.map(_.json).toVector),
+    v => v.asVector.map(_.as[V]).toArray,
+    Definition(DefType.Arr(implicitly[RW[V]].definition))
   )
+  implicit val rw: RW[Bytes] = RW.gen
 
   sealed trait Algorithm
 
