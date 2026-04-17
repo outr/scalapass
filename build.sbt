@@ -36,7 +36,7 @@ lazy val root = project
 
       "de.mkammerer" % "argon2-jvm" % "2.12",
 
-      "commons-codec" % "commons-codec" % "1.16.1",
+      "commons-codec" % "commons-codec" % "1.21.0",
 
       "org.scalatest" %% "scalatest" % "3.2.20" % "test"
     )
