@@ -1,5 +1,5 @@
 ThisBuild / organization := "com.outr"
-ThisBuild / version := "1.4.0"
+ThisBuild / version := "1.4.1"
 
 ThisBuild / scalaVersion := "2.13.18"
 
@@ -32,7 +32,7 @@ lazy val root = project
   .settings(
     name := "scalapass",
     libraryDependencies ++= Seq(
-      "com.outr" %% "profig" % "3.6.1",
+      "com.outr" %% "profig" % "3.7.0",
 
       "de.mkammerer" % "argon2-jvm" % "2.12",
 
