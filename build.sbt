@@ -32,7 +32,7 @@ lazy val root = project
   .settings(
     name := "scalapass",
     libraryDependencies ++= Seq(
-      "com.outr" %% "profig" % "3.7.0",
+      "com.outr" %% "profig" % "3.7.1",
 
       "de.mkammerer" % "argon2-jvm" % "2.12",
 
