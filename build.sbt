@@ -1,7 +1,7 @@
 ThisBuild / organization := "com.outr"
 ThisBuild / version := "1.4.2"
 
-ThisBuild / scalaVersion := "3.3.7"
+ThisBuild / scalaVersion := "3.3.8"
 
 ThisBuild / scalacOptions ++= Seq("-unchecked", "-deprecation")
 
